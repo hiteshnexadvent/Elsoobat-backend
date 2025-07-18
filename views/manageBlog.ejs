@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manage Blogs</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eaeaea;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Sidebar width adjustment */
+    .main-content {
+      margin-left: 250px; /* Adjust according to your sidebar width */
+      padding: 40px 20px;
+      max-width: 1000px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 30px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    thead {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .no-data {
+      text-align: center;
+      padding: 20px;
+      color: #888;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    /* Responsive styles */
+    @media screen and (max-width: 768px) {
+      .main-content {
+        margin-left: 0;
+        padding: 20px;
+      }
+
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+
+      thead {
+        display: none;
+      }
+
+      tr {
+        margin-bottom: 15px;
+        background: #fff;
+        padding: 15px;
+        border-radius: 8px;
+      }
+
+      td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+      }
+
+      td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 15px;
+        top: 15px;
+        font-weight: bold;
+        color: #333;
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Include reusable components -->
+  <%- include('header') %>
+  <%- include('sideBar') %>
+
+  <!-- Main content starts here -->
+  <div class="main-content">
+    <h1>Manage Blogs</h1>
+
+    <% if(blog.length > 0) { %>
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Paragraph One</th>
+            <th>Paragraph Two</th>
+            <th>Image</th>
+            <th colspan="2">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% blog.forEach(item => { %>
+              <td data-label="Title"><%= item.title %></td>
+              <td data-label="Paragraph One"><%= item.para_one %></td>
+              <td data-label="Paragraph Two"><%= item.para_two %></td>
+              <td><img src="<%= item.image %>" alt="Blog Image" height="60" style="border-radius: 5px;"></td>
+              <td>
+                <a href="/admin/edit-blog/<%= item._id%>" style="width: 70px; background-color: rgb(30, 240, 30);text-decoration: none;height: 40px;color: #000;display: inline-block;padding-top: 10px;padding-left: 20px;border-radius: 5px;">Edit</a></td>
+                <td><a href="/admin/delete-blog/<%= item._id%>"style="width: 80px; background-color: red;text-decoration: none;height: 40px;color: #000;display: inline-block;padding-top: 10px;padding-left: 18px;border-radius: 5px;">Delete</a>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <div class="no-data">No blogs available</div>
+    <% } %>
+  </div>
+
+</body>
+</html>
