@@ -43,6 +43,16 @@ exports.getManageBlog=async (req,res) => {
         const blog = await blogMong.find();
         return res.render('manageBlog', { blog });
     }
+}
+
+exports.getManageBlogApi=async (req,res) => {
+    
+    try {
+        const blog = await blogMong.find();
+        res.json(blog);
+    } catch (error) {
+        console.log(error.message);
+    }
 
 }
 

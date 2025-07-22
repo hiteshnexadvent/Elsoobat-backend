@@ -4,6 +4,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
 const dotenv = require('dotenv');
+const cors = require('cors');
 const router = require('./routes/admin');
 const { default: mongoose } = require('mongoose');
 
@@ -15,6 +16,27 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 dotenv.config();
+
+// -------------------------- cors
+
+app.use(cors({
+    origin: process.env.REACT_APP_API_URL,
+    credentials: true
+}))
+
+// -------------------------------- session for live
+
+// app.use(session({
+//     secret: process.env.SECRET_SESSION_KEY,
+//     resave: false,
+//     saveUninitialized: false,
+//     cookie: {
+//         sameSite: 'none',
+//         secure: true,
+//         maxAge: 24 * 60 * 60 * 1000,
+//         httpOnly: true,
+//     }
+// }))
 
 // --------------------------- session
 
