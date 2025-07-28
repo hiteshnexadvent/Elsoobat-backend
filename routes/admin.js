@@ -3,6 +3,7 @@ const router = express.Router();
 const { getadminLogin, postadminLogin, postadminSignup, getadminSignup, getAdminDash, getChangePassword, postchangePassword, getadminSignout } = require('../controllers/adminAuthentication');
 const { getBlog, postAddBlogs, getManageBlog, getEditBlog, deleteBlog, postEditBlog, getEditBlogImg, postEditImage, getManageBlogApi } = require('../controllers/blogsManager');
 const uploads = require('../middleware/multer');
+const { postQuery, getManageQuery, deleteQuery } = require('../controllers/queryController');
 
 // ------------------ admin 
 
@@ -27,5 +28,11 @@ router.get('/delete-blog/:id', deleteBlog);
 
 router.get('/edit-image/:imgId/:imgIndex', uploads.single("file"), getEditBlogImg);
 router.post('/edit-image/:imgId/:imgIndex', uploads.single("file"), postEditImage);
+
+// ----------------- queries
+
+router.post('/user-query', postQuery);
+router.get('/manage-queries', getManageQuery);
+router.get('/delete-query/:id', deleteQuery);
 
 module.exports = router;

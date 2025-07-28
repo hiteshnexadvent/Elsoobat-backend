@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manage Blogs</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eaeaea;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Sidebar width adjustment */
+    .main-content {
+      margin-left: 250px; /* Adjust according to your sidebar width */
+      padding: 40px 20px;
+      max-width: 1000px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 30px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    thead {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+      white-space: normal;
+    }
+
+    .msg{
+        word-wrap: break-word;
+        word-break: break-word;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .no-data {
+      text-align: center;
+      padding: 20px;
+      color: #888;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    /* Search Container Style */
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px auto;
+  width: 100%;
+  max-width: 1000px;
+  position: relative;
+}
+
+/* Input Box Style */
+.search-box {
+  width: 100%;
+  padding: 12px 20px 12px 45px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+/* Search Icon Style */
+.search-icon {
+  position: absolute;
+  left: 20px;
+  font-size: 18px;
+  color: #888;
+}
+
+
+    /* Responsive styles */
+    @media screen and (max-width: 768px) {
+      .main-content {
+        margin-left: 0;
+        padding: 20px;
+      }
+
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+
+      thead {
+        display: none;
+      }
+
+      tr {
+        margin-bottom: 15px;
+        background: #fff;
+        padding: 15px;
+        border-radius: 8px;
+      }
+
+      td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+      }
+
+      td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 15px;
+        top: 15px;
+        font-weight: bold;
+        color: #333;
+        text-align: left;
+      }
+    }
+
+
+  </style>
+</head>
+<body>
+
+  <!-- Include reusable components -->
+  <%- include('header') %>
+  <%- include('sideBar') %>
+
+  
+
+
+  <div class="main-content">
+    <h1>User Queries</h1>
+
+    <div class="search-container">
+  <i class="fa fa-search search-icon"></i>
+  <input
+    type="text"
+    id="searchInput"
+    placeholder="Search queries..."
+    class="search-box"
+  />
+</div>
+
+    <% if(query.length > 0) { %>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>City</th>
+            <th>Country</th>
+            <th>Message</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% query.forEach(item => { %>
+              <td data-label="Title"><%= item.name %></td>
+              <td data-label="Paragraph One"><%= item.email %></td>
+              <td data-label="Paragraph Two"><%= item.mobile %></td>
+              <td data-label="Paragraph Two"><%= item.city %></td>
+              <td data-label="Paragraph Two"><%= item.country %></td>
+              <td data-label="Paragraph Two" class="msg"><%= item.message %></td>
+              <td><a href="/admin/delete-query/<%= item._id%>"style="width: 80px; background-color: red;text-decoration: none;height: 40px;color: #fff;display: inline-block;padding-top: 10px;padding-left: 18px;border-radius: 5px;">Delete</a>
+              </td>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <div class="no-data">No queries available</div>
+    <% } %>
+  </div>
+
+  <script>
+  document.getElementById("searchInput").addEventListener("keyup", function () {
+    const filter = this.value.toLowerCase();
+    const rows = document.querySelectorAll("tbody tr");
+
+    rows.forEach(row => {
+      const rowText = row.innerText.toLowerCase();
+      if (rowText.includes(filter)) {
+        row.style.display = "";
+      } else {
+        row.style.display = "none";
+      }
+    });
+  });
+</script>
+
+
+</body>
+</html>
