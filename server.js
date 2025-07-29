@@ -26,6 +26,8 @@ app.use(cors({
 
 // -------------------------------- session for live
 
+app.set('trust proxy', 1)
+
 app.use(session({
     secret: process.env.SECRET_SESSION_KEY,
     resave: false,
