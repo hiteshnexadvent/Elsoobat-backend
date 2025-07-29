@@ -26,30 +26,30 @@ app.use(cors({
 
 // -------------------------------- session for live
 
-// app.use(session({
-//     secret: process.env.SECRET_SESSION_KEY,
-//     resave: false,
-//     saveUninitialized: false,
-//     cookie: {
-//         sameSite: 'none',
-//         secure: true,
-//         maxAge: 24 * 60 * 60 * 1000,
-//         httpOnly: true,
-//     }
-// }))
-
-// --------------------------- session
-
 app.use(session({
     secret: process.env.SECRET_SESSION_KEY,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: {
-        secure: false,
+        sameSite: 'none',
+        secure: true,
         maxAge: 24 * 60 * 60 * 1000,
-        httpOnly: true
-    },
+        httpOnly: true,
+    }
 }))
+
+// --------------------------- session
+
+// app.use(session({
+//     secret: process.env.SECRET_SESSION_KEY,
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: {
+//         secure: false,
+//         maxAge: 24 * 60 * 60 * 1000,
+//         httpOnly: true
+//     },
+// }))
 
 // -------------------------- mongodb
 
