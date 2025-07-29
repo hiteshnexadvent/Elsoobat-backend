@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getadminLogin, postadminLogin, postadminSignup, getadminSignup, getAdminDash, getChangePassword, postchangePassword, getadminSignout } = require('../controllers/adminAuthentication');
+const { getadminLogin, postadminLogin, postadminSignup, getadminSignup, getAdminDash, getChangePassword, postchangePassword, getadminSignout, getForgetPass, postForgetPass, verifyOtp, resetForgetPassword, adminDashboard } = require('../controllers/adminAuthentication');
 const { getBlog, postAddBlogs, getManageBlog, getEditBlog, deleteBlog, postEditBlog, getEditBlogImg, postEditImage, getManageBlogApi } = require('../controllers/blogsManager');
 const uploads = require('../middleware/multer');
 const { postQuery, getManageQuery, deleteQuery } = require('../controllers/queryController');
@@ -11,10 +11,15 @@ router.get('/signup', getadminSignup);
 router.post('/signup', postadminSignup);
 router.get('/login', getadminLogin);
 router.post('/login', postadminLogin);
-router.get('/dashboard', getAdminDash);
+router.get('/dashboard', adminDashboard);
 router.get('/change-password', getChangePassword);
 router.post('/change-password', postchangePassword);
 router.get('/signout', getadminSignout);
+
+router.get('/forget-password', getForgetPass);
+router.post('/forget-password', postForgetPass);
+router.post('/verify-otp', verifyOtp);
+router.post('/reset-password', resetForgetPassword);
 
 // ----------------- blogs
 
