@@ -4,6 +4,7 @@ const { getadminLogin, postadminLogin, postadminSignup, getadminSignup, getAdmin
 const { getBlog, postAddBlogs, getManageBlog, getEditBlog, deleteBlog, postEditBlog, getEditBlogImg, postEditImage, getManageBlogApi } = require('../controllers/blogsManager');
 const uploads = require('../middleware/multer');
 const { postQuery, getManageQuery, deleteQuery } = require('../controllers/queryController');
+const { registeredValidator } = require('../validation/validation');
 
 // ------------------ admin 
 
@@ -36,7 +37,7 @@ router.post('/edit-image/:imgId/:imgIndex', uploads.single("file"), postEditImag
 
 // ----------------- queries
 
-router.post('/user-query', postQuery);
+router.post('/user-query',registeredValidator, postQuery);
 router.get('/manage-queries', getManageQuery);
 router.get('/delete-query/:id', deleteQuery);
 

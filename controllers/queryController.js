@@ -1,10 +1,16 @@
 const axios = require("axios");
 const queryMong = require("../models/Query_Mong");
+const { validationResult } = require('express-validator');
 
 exports.postQuery = async (req, res) => {
+
   const { name, email, mobile, country, city, message, captcha } = req.body;
 
-  console.log("Captcha received:", captcha);
+  const error = validationResult(req);
+
+  if (!error.isEmpty()) {
+    return res.status(400).json({ message: error.array()[0].msg });        
+  }
 
   if (!captcha) {
     return res
