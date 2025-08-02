@@ -8,7 +8,7 @@
     <style>
         body{
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            /* background: linear-gradient(to right, #667eea, #764ba2); */
+            background: linear-gradient(to right, #667eea, #764ba2);
         }
     </style>
 
@@ -23,16 +23,16 @@
 
 
     <div style="max-width: 800px; margin: auto; padding: 30px;">
-  <h2 style="text-align: center; color: white;">User Queries Per Month</h2>
+  <h2 style="text-align: center; color: black;margin-bottom: 50px;">User Queries Per Month</h2>
   <canvas id="queryChart"></canvas>
 </div>
 
-<div class="container" style="padding-left: 180px;">
+<div class="container" style="padding-left: 180px;padding-bottom: 50px;">
     <div class="row justify-content-center g-4 mt-4">
   <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center">
     <a href="/admin/change-password" style="text-decoration: none;">
       <div class="card" style="width: 18rem; cursor: pointer;">
-        <img src="/uploads/dashboard.avif" class="card-img-top" alt="...">
+        <img src="/uploads/dashboard.jpg" class="card-img-top" alt="...">
         <div class="card-body" style="background-color: rgb(56, 57, 107);">
           <p class="card-text fs-4 fw-bolder text-light">Change Password</p>
         </div>
@@ -43,7 +43,7 @@
   <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center">
     <a href="/admin/manage-blog" style="text-decoration: none;">
       <div class="card" style="width: 18rem; cursor: pointer;">
-        <img src="/uploads/blog.avif" class="card-img-top" alt="...">
+        <img src="/uploads/blog.jpg" class="card-img-top" alt="...">
         <div class="card-body" style="background-color: rgb(56, 57, 107);">
           <p class="card-text fs-4 fw-bolder text-light">Blogs</p>
         </div>
@@ -54,7 +54,7 @@
   <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center">
     <a href="/admin/manage-queries" style="text-decoration: none;">
       <div class="card" style="width: 18rem; cursor: pointer;">
-        <img src="/uploads/user.avif" class="card-img-top" alt="..." style="height: 190px;">
+        <img src="/uploads/user.jpg" class="card-img-top" alt="...">
         <div class="card-body" style="background-color: rgb(56, 57, 107);">
           <p class="card-text fs-4 fw-bolder text-light">User Queries</p>
         </div>
@@ -93,16 +93,49 @@
       }]
     },
     options: {
-      responsive: true,
-      scales: {
-        y: {
-          beginAtZero: true,
-          ticks: {
-            precision: 0
-          }
+  responsive: true,
+  plugins: {
+    legend: {
+      labels: {
+        color: '#ffffff',  // Legend text color
+        font: {
+          size: 14,
+          family: 'Segoe UI'
         }
       }
     }
+  },
+  scales: {
+    x: {
+      ticks: {
+        color: '#ffffff',   // X-axis label color
+        font: {
+          size: 13,
+          family: 'Segoe UI'
+        }
+      },
+      grid: {
+        color: 'rgba(255, 255, 255, 0.1)' // optional grid color
+      }
+    },
+    y: {
+      beginAtZero: true,
+      ticks: {
+        color: '#ffffff',  // Y-axis label color
+        font: {
+          size: 13,
+          family: 'Segoe UI'
+        },
+        stepSize: 4,
+        precision: 0
+      },
+      grid: {
+        color: 'rgba(255, 255, 255, 0.1)' // optional grid color
+      }
+    }
+  }
+}
+
   });
 </script>
 
