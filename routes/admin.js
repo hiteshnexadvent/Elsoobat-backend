@@ -3,7 +3,7 @@ const router = express.Router();
 const { getadminLogin, postadminLogin, postadminSignup, getadminSignup, getAdminDash, getChangePassword, postchangePassword, getadminSignout, getForgetPass, postForgetPass, verifyOtp, resetForgetPassword, adminDashboard } = require('../controllers/adminAuthentication');
 const { getBlog, postAddBlogs, getManageBlog, getEditBlog, deleteBlog, postEditBlog, getEditBlogImg, postEditImage, getManageBlogApi } = require('../controllers/blogsManager');
 const uploads = require('../middleware/multer');
-const { postQuery, getManageQuery, deleteQuery } = require('../controllers/queryController');
+const { postQuery, getManageQuery, deleteQuery, newsLetter, getnewsletter, deleteNewsletter } = require('../controllers/queryController');
 const { registeredValidator } = require('../validation/validation');
 
 // ------------------ admin 
@@ -40,5 +40,11 @@ router.post('/edit-image/:imgId/:imgIndex', uploads.single("file"), postEditImag
 router.post('/user-query',registeredValidator, postQuery);
 router.get('/manage-queries', getManageQuery);
 router.get('/delete-query/:id', deleteQuery);
+
+// ----------------- newsletter
+
+router.post('/newsletter', newsLetter);
+router.get('/manage-newsletter', getnewsletter);
+router.get('/delete-newsletter/:id', deleteNewsletter);
 
 module.exports = router;

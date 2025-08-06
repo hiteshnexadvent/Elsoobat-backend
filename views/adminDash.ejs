@@ -10,6 +10,21 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(to right, #667eea, #764ba2);
         }
+
+        @media (min-width:360px) and (max-width:490px) {
+          .cards{
+            margin: auto !important;
+            padding: 0 0px 50px 0 !important;
+          }
+        }
+
+        @media (min-width:760px) and (max-width:900px) {
+          .cards{
+            margin: auto !important;
+            padding: 0 0px 50px 0 !important;
+          }
+        }
+
     </style>
 
     
@@ -22,14 +37,14 @@
     <%- include('sideBar')  %>
 
 
-    <div style="max-width: 800px; margin: auto; padding: 30px;">
-  <h2 style="text-align: center; color: black;margin-bottom: 50px;">User Queries Per Month</h2>
+    <div style="max-width: 800px; margin: auto; padding: 30px;height: auto;">
+  <h2 style="text-align: center; color: white;margin-bottom: 50px;">User Queries Per Month</h2>
   <canvas id="queryChart"></canvas>
 </div>
 
-<div class="container" style="padding-left: 180px;padding-bottom: 50px;">
+<div class="container cards" style="padding-left: 180px;padding-bottom: 50px;width: 80%;">
     <div class="row justify-content-center g-4 mt-4">
-  <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center">
+  <div class="col-lg-6 col-md-12 col-sm-12 d-flex justify-content-center">
     <a href="/admin/change-password" style="text-decoration: none;">
       <div class="card" style="width: 18rem; cursor: pointer;">
         <img src="/uploads/dashboard.jpg" class="card-img-top" alt="...">
@@ -40,7 +55,7 @@
     </a>
   </div>
 
-  <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center">
+  <div class="col-lg-6 col-md-6 col-sm-12 d-flex justify-content-center">
     <a href="/admin/manage-blog" style="text-decoration: none;">
       <div class="card" style="width: 18rem; cursor: pointer;">
         <img src="/uploads/blog.jpg" class="card-img-top" alt="...">
@@ -51,7 +66,7 @@
     </a>
   </div>
 
-  <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center">
+  <div class="col-lg-6 col-md-6 col-sm-12 d-flex justify-content-center">
     <a href="/admin/manage-queries" style="text-decoration: none;">
       <div class="card" style="width: 18rem; cursor: pointer;">
         <img src="/uploads/user.jpg" class="card-img-top" alt="...">
