@@ -67,22 +67,48 @@
   </style>
 </head>
 <body>
-  <form action="/admin/signup" method="post">
-    <h2>Admin Signup</h2>
+  <form id="signupForm" action="/admin/signup" method="post">
+  <h2>Admin Signup</h2>
 
-    <label for="name">Name:</label>
-    <input type="text" name="name" id="name" required />
+  <label for="name">Name:</label>
+  <input type="text" name="name" id="name" required />
 
-    <label for="email">Email:</label>
-    <input type="email" name="email" id="email" required />
+  <label for="email">Email:</label>
+  <input type="email" name="email" id="email" required />
 
-    <label for="mobile">Mobile:</label>
-    <input type="tel" name="mobile" id="mobile" required />
+  <label for="mobile">Mobile:</label>
+  <input type="tel" name="mobile" id="mobile" required />
 
-    <label for="pass">Password:</label>
-    <input type="password" name="pass" id="pass" required />
+  <label for="pass">Password:</label>
+  <input type="password" name="pass" id="pass" required />
 
-    <button type="submit">Submit</button>
-  </form>
+  <button type="submit">Submit</button>
+</form>
+
+
+    <script>
+    document.getElementById("signupForm").addEventListener("submit", function (e) {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("pass").value.trim();
+
+      const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{6,}$/;
+
+      if (!emailPattern.test(email)) {
+        alert("Please enter a valid email address.");
+        e.preventDefault();
+        return;
+      }
+
+      if (!passwordPattern.test(password)) {
+        alert(
+          "Password must have:\n- At least 1 uppercase letter\n- At least 1 lowercase letter\n- At least 1 special character\n- Minimum 6 characters"
+        );
+        e.preventDefault();
+        return;
+      }
+    });
+  </script>
+
 </body>
 </html>
