@@ -161,8 +161,17 @@
   <% newsletter.forEach(item => { %>
     <tr data-date="<%= item.createdAt.toISOString() %>">
       <td data-label="email"><%= item.email %></td>
-      <td data-label="date"><%= item.createdAt.toLocaleDateString('en-IN') %></td>
-      <td data-label="time"><%= item.createdAt.toLocaleTimeString('en-IN') %></td>
+      <td data-label="date">
+  <%= new Date(item.createdAt).toLocaleDateString('en-IN', {
+    timeZone: 'Asia/Kolkata',
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric'
+  }) %>
+</td>
+
+      <td data-label="time"><%= new Date(item.createdAt).toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata' }) %></td>
+
 
       <td>
         <a href="/admin/delete-newsletter/<%= item._id%>" style="width: 80px; background-color: red; text-decoration: none; height: 40px; color: #fff; display: inline-block; padding: 10px 18px; border-radius: 5px;">
